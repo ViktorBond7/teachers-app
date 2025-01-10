@@ -9,10 +9,13 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import AuthModal from "./AuthModal/AuthModal";
+import { get, ref } from "firebase/database";
 
 function App() {
   const [modalType, setModalType] = useState(null); // 'login' або 'signup'
   const [user, setUser] = useState(null);
+  const [error, setError] = useState(null); // Додаємо стан для помилки
+  const [data, setData] = useState(null);
   const auth = getAuth();
 
   // Виклик onAuthStateChanged для збереження авторизації після оновлення сторінки
@@ -32,6 +35,7 @@ function App() {
   // Функція для логіну
   const handleLogin = async (data) => {
     try {
+      setError(null); // Очищення помилок перед логіном
       const userCredential = await signInWithEmailAndPassword(
         auth,
         data.email,
@@ -41,12 +45,14 @@ function App() {
       setModalType(null); // Закрити модалку після успішного логіну
     } catch (error) {
       console.error("Помилка логіну:", error.message);
+      setError("Неправильний email або пароль."); // Встановлюємо текст помилки
     }
   };
 
   // Функція для реєстрації
   const handleSignUp = async (data) => {
     try {
+      setError(null); // Очищення помилок перед реєстрацією
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         data.email,
@@ -62,6 +68,7 @@ function App() {
       setModalType(null); // Закрити модалку після успішної реєстрації
     } catch (error) {
       console.error("Помилка реєстрації:", error.message);
+      setError("Цей email вже зареєстрований або дані некоректні."); // Встановлюємо текст помилки
     }
   };
 
@@ -71,9 +78,32 @@ function App() {
     setUser(null);
   };
 
+  // Отримання даних з бази після авторизації
+  useEffect(() => {
+    if (user) {
+      const dbRef = ref(database, "/");
+      console.log("user", user);
+      get(dbRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            setData(snapshot.val()); // Зберігаємо отримані дані в стан
+            console.log("Data:", snapshot.val());
+          } else {
+            setError("Немає даних у базі");
+            console.log("Немає даних у базі");
+          }
+        })
+        .catch((error) => {
+          setError("Помилка при отриманні даних");
+          console.error("Помилка при отриманні даних:", error);
+        });
+    }
+  }, [user]); // Виконувати запит тільки після авторизації користувача
+
   return (
     <div className="App">
       <h1>Firebase Auth with React</h1>
+      <p>{JSON.stringify(data, null, 2)}</p>
       {user ? (
         <div>
           <p>Вітаємо, {user.displayName || user.email}</p>
@@ -95,11 +125,105 @@ function App() {
           onClose={() => setModalType(null)}
         />
       )}
+
+      {/* Відображення помилки, якщо вона є */}
+      {error && <p className="error">{error}</p>}
     </div>
   );
 }
 
 export default App;
+
+// function App() {
+//   const [modalType, setModalType] = useState(null); // 'login' або 'signup'
+//   const [user, setUser] = useState(null);
+//   const auth = getAuth();
+
+//   // Виклик onAuthStateChanged для збереження авторизації після оновлення сторінки
+//   useEffect(() => {
+//     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+//       if (currentUser) {
+//         setUser(currentUser);
+//       } else {
+//         setUser(null);
+//       }
+//     });
+
+//     // Очищення підписки при розмонтуванні компонента
+//     return () => unsubscribe();
+//   }, [auth]);
+
+//   // Функція для логіну
+//   const handleLogin = async (data) => {
+//     try {
+//       const userCredential = await signInWithEmailAndPassword(
+//         auth,
+//         data.email,
+//         data.password
+//       );
+//       setUser(userCredential.user);
+//       setModalType(null); // Закрити модалку після успішного логіну
+//     } catch (error) {
+//       console.error("Помилка логіну:", error.message);
+//     }
+//   };
+
+//   // Функція для реєстрації
+//   const handleSignUp = async (data) => {
+//     try {
+//       const userCredential = await createUserWithEmailAndPassword(
+//         auth,
+//         data.email,
+//         data.password
+//       );
+
+//       // Оновлюємо профіль користувача в Firebase, додаємо ім'я
+//       await updateProfile(userCredential.user, {
+//         displayName: data.name,
+//       });
+
+//       setUser({ ...userCredential.user, displayName: data.name });
+//       setModalType(null); // Закрити модалку після успішної реєстрації
+//     } catch (error) {
+//       console.error("Помилка реєстрації:", error.message);
+//     }
+//   };
+
+//   // Функція для виходу
+//   const handleLogout = () => {
+//     auth.signOut();
+//     setUser(null);
+//   };
+
+//   return (
+//     <div className="App">
+//       <h1>Firebase Auth with React</h1>
+//       {user ? (
+//         <div>
+//           <p>Вітаємо, {user.displayName || user.email}</p>
+//           <button onClick={handleLogout}>Log Out</button>
+//         </div>
+//       ) : (
+//         <div>
+//           {/* Дві окремі кнопки для відкриття форм */}
+//           <button onClick={() => setModalType("login")}>Log In</button>
+//           <button onClick={() => setModalType("signup")}>Sign Up</button>
+//         </div>
+//       )}
+
+//       {/* Відображення модального вікна */}
+//       {modalType && (
+//         <AuthModal
+//           type={modalType}
+//           onSubmit={modalType === "login" ? handleLogin : handleSignUp}
+//           onClose={() => setModalType(null)}
+//         />
+//       )}
+//     </div>
+//   );
+// }
+
+// export default App;
 
 // import { useEffect, useState } from "react";
 // import { ref, get } from "firebase/database";
