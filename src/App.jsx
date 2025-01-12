@@ -9,14 +9,17 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import AuthModal from "./AuthModal/AuthModal";
-import { get, ref } from "firebase/database";
+import { get, limitToFirst, query, ref, startAfter } from "firebase/database";
 
 function App() {
   const [modalType, setModalType] = useState(null); // 'login' або 'signup'
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null); // Додаємо стан для помилки
   const [data, setData] = useState(null);
+  const [lastKey, setLastKey] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
   const auth = getAuth();
+  console.log("iiiiiiiiiiii", lastKey);
 
   // Виклик onAuthStateChanged для збереження авторизації після оновлення сторінки
   useEffect(() => {
@@ -81,29 +84,85 @@ function App() {
   // Отримання даних з бази після авторизації
   useEffect(() => {
     if (user) {
-      const dbRef = ref(database, "/");
-      console.log("user", user);
-      get(dbRef)
-        .then((snapshot) => {
-          if (snapshot.exists()) {
-            setData(snapshot.val()); // Зберігаємо отримані дані в стан
-            console.log("Data:", snapshot.val());
-          } else {
-            setError("Немає даних у базі");
-            console.log("Немає даних у базі");
-          }
-        })
-        .catch((error) => {
-          setError("Помилка при отриманні даних");
-          console.error("Помилка при отриманні даних:", error);
-        });
+      loadInitialData();
     }
   }, [user]); // Виконувати запит тільки після авторизації користувача
+
+  const loadMoreData = async () => {
+    // if (!lastKey || !hasMore) return;
+    const dataQuery = query(
+      ref(database, "/"),
+      startAfter(lastKey),
+
+      limitToFirst(2)
+    );
+
+    try {
+      const snapshot = await get(dataQuery); // Асинхронне отримання даних
+      const items = snapshot.val();
+
+      // if (!items || Object.keys(items).length === 0) {
+      //   setHasMore(false);
+      //   return;
+      // }
+
+      const itemsArray = Object.entries(items).map(([key, value]) => ({
+        id: key,
+        ...value,
+      }));
+
+      setData((prevData) => [...prevData, ...itemsArray]);
+
+      setLastKey(itemsArray[itemsArray.length - 1].id);
+      console.log("Новий lastKey:", itemsArray[itemsArray.length - 1].id);
+
+      if (itemsArray.length < 2) {
+        setHasMore(false);
+      }
+    } catch (error) {
+      setError("Помилка при завантаженні даних");
+      console.error("Помилка при завантаженні даних:", error);
+    }
+  };
+
+  const loadInitialData = async () => {
+    try {
+      console.log("user", user);
+      const dataQuery = query(ref(database, "/"), limitToFirst(5));
+
+      const snapshot = await get(dataQuery);
+      if (snapshot.exists()) {
+        const items = snapshot.val();
+        const itemsArray = Object.entries(items).map(([key, value]) => ({
+          id: key,
+          ...value,
+        }));
+
+        setData(itemsArray); // Зберігаємо отримані дані в стан
+        setLastKey(itemsArray[itemsArray.length - 1].id);
+
+        if (itemsArray.length < 2) {
+          setHasMore(false); // Якщо завантажено менше 2 елементів, більше немає що завантажувати
+        }
+
+        console.log("entris111", itemsArray);
+        console.log("Data:", snapshot.val());
+      } else {
+        setError("Немає даних у базі");
+        console.log("Немає даних у базі");
+      }
+    } catch (error) {
+      setError("Помилка при отриманні даних");
+      console.error("Помилка при отриманні даних:", error);
+    }
+  };
 
   return (
     <div className="App">
       <h1>Firebase Auth with React</h1>
-      <p>{JSON.stringify(data, null, 2)}</p>
+      {user && <p>{JSON.stringify(data, null, 2)}</p>}
+      {/* <button onClick={loadMoreData}>LoadMore</button> */}
+      {hasMore && <button onClick={loadMoreData}>Load More</button>}
       {user ? (
         <div>
           <p>Вітаємо, {user.displayName || user.email}</p>
