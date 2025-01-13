@@ -1,167 +1,36 @@
 import "./App.css";
-import database from "./Firebase";
 import { useState, useEffect } from "react";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  onAuthStateChanged,
-} from "firebase/auth";
-import AuthModal from "./AuthModal/AuthModal";
-import { get, limitToFirst, query, ref, startAfter } from "firebase/database";
-
+import AuthModal from "./components/AuthModal/AuthModal";
+import useData from "./hooks/useData";
+import useAuth from "./hooks/useAuth";
 function App() {
-  const [modalType, setModalType] = useState(null); // 'login' або 'signup'
-  const [user, setUser] = useState(null);
-  const [error, setError] = useState(null); // Додаємо стан для помилки
-  const [data, setData] = useState(null);
-  const [lastKey, setLastKey] = useState(null);
-  const [hasMore, setHasMore] = useState(true);
-  const auth = getAuth();
-  console.log("iiiiiiiiiiii", lastKey);
+  const [modalType, setModalType] = useState(null); // 'login' or 'signup'
+  const {
+    user,
+    error: authError,
+    handleLogin,
+    handleSignUp,
+    handleLogout,
+  } = useAuth();
+  const {
+    data,
+    loadInitialData,
+    loadMoreData,
+    hasMore,
+    error: dataError,
+  } = useData();
 
-  // Виклик onAuthStateChanged для збереження авторизації після оновлення сторінки
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-      } else {
-        setUser(null);
-      }
-    });
-
-    // Очищення підписки при розмонтуванні компонента
-    return () => unsubscribe();
-  }, [auth]);
-
-  // Функція для логіну
-  const handleLogin = async (data) => {
-    try {
-      setError(null); // Очищення помилок перед логіном
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      setUser(userCredential.user);
-      setModalType(null); // Закрити модалку після успішного логіну
-    } catch (error) {
-      console.error("Помилка логіну:", error.message);
-      setError("Неправильний email або пароль."); // Встановлюємо текст помилки
-    }
-  };
-
-  // Функція для реєстрації
-  const handleSignUp = async (data) => {
-    try {
-      setError(null); // Очищення помилок перед реєстрацією
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-
-      // Оновлюємо профіль користувача в Firebase, додаємо ім'я
-      await updateProfile(userCredential.user, {
-        displayName: data.name,
-      });
-
-      setUser({ ...userCredential.user, displayName: data.name });
-      setModalType(null); // Закрити модалку після успішної реєстрації
-    } catch (error) {
-      console.error("Помилка реєстрації:", error.message);
-      setError("Цей email вже зареєстрований або дані некоректні."); // Встановлюємо текст помилки
-    }
-  };
-
-  // Функція для виходу
-  const handleLogout = () => {
-    auth.signOut();
-    setUser(null);
-  };
-
-  // Отримання даних з бази після авторизації
   useEffect(() => {
     if (user) {
       loadInitialData();
     }
   }, [user]); // Виконувати запит тільки після авторизації користувача
 
-  const loadMoreData = async () => {
-    // if (!lastKey || !hasMore) return;
-    const dataQuery = query(
-      ref(database, "/"),
-      startAfter(lastKey),
-
-      limitToFirst(2)
-    );
-
-    try {
-      const snapshot = await get(dataQuery); // Асинхронне отримання даних
-      const items = snapshot.val();
-
-      // if (!items || Object.keys(items).length === 0) {
-      //   setHasMore(false);
-      //   return;
-      // }
-
-      const itemsArray = Object.entries(items).map(([key, value]) => ({
-        id: key,
-        ...value,
-      }));
-
-      setData((prevData) => [...prevData, ...itemsArray]);
-
-      setLastKey(itemsArray[itemsArray.length - 1].id);
-      console.log("Новий lastKey:", itemsArray[itemsArray.length - 1].id);
-
-      if (itemsArray.length < 2) {
-        setHasMore(false);
-      }
-    } catch (error) {
-      setError("Помилка при завантаженні даних");
-      console.error("Помилка при завантаженні даних:", error);
-    }
-  };
-
-  const loadInitialData = async () => {
-    try {
-      console.log("user", user);
-      const dataQuery = query(ref(database, "/"), limitToFirst(5));
-
-      const snapshot = await get(dataQuery);
-      if (snapshot.exists()) {
-        const items = snapshot.val();
-        const itemsArray = Object.entries(items).map(([key, value]) => ({
-          id: key,
-          ...value,
-        }));
-
-        setData(itemsArray); // Зберігаємо отримані дані в стан
-        setLastKey(itemsArray[itemsArray.length - 1].id);
-
-        if (itemsArray.length < 2) {
-          setHasMore(false); // Якщо завантажено менше 2 елементів, більше немає що завантажувати
-        }
-
-        console.log("entris111", itemsArray);
-        console.log("Data:", snapshot.val());
-      } else {
-        setError("Немає даних у базі");
-        console.log("Немає даних у базі");
-      }
-    } catch (error) {
-      setError("Помилка при отриманні даних");
-      console.error("Помилка при отриманні даних:", error);
-    }
-  };
-
   return (
     <div className="App">
       <h1>Firebase Auth with React</h1>
       {user && <p>{JSON.stringify(data, null, 2)}</p>}
-      {/* <button onClick={loadMoreData}>LoadMore</button> */}
+
       {hasMore && <button onClick={loadMoreData}>Load More</button>}
       {user ? (
         <div>
@@ -170,7 +39,6 @@ function App() {
         </div>
       ) : (
         <div>
-          {/* Дві окремі кнопки для відкриття форм */}
           <button onClick={() => setModalType("login")}>Log In</button>
           <button onClick={() => setModalType("signup")}>Sign Up</button>
         </div>
@@ -185,8 +53,8 @@ function App() {
         />
       )}
 
-      {/* Відображення помилки, якщо вона є */}
-      {error && <p className="error">{error}</p>}
+      {authError && <p className="error">{authError}</p>}
+      {dataError && <p className="error">{dataError}</p>}
     </div>
   );
 }
