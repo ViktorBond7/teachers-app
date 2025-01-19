@@ -10,7 +10,7 @@ import database from "../Firebase";
 import { useState } from "react";
 
 const useData = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [lastKey, setLastKey] = useState(null);
   const [hasMore, setHasMore] = useState(true);
   const [error, setError] = useState(null);

@@ -7,11 +7,13 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
+
 const useAuth = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+
   const auth = getAuth();
-  const handleLogin = async (data) => {
+  const handleLogin = async (data, closeModal) => {
     try {
       setError(null); // Очищення помилок перед логіном
       const userCredential = await signInWithEmailAndPassword(
@@ -20,7 +22,7 @@ const useAuth = () => {
         data.password
       );
       setUser(userCredential.user);
-      setModalType(null); // Закрити модалку після успішного логіну
+      closeModal();
     } catch (error) {
       console.error("Помилка логіну:", error.message);
       setError("Неправильний email або пароль."); // Встановлюємо текст помилки
@@ -28,7 +30,7 @@ const useAuth = () => {
   };
 
   // Функція для реєстрації
-  const handleSignUp = async (data) => {
+  const handleSignUp = async (data, closeModal) => {
     try {
       setError(null); // Очищення помилок перед реєстрацією
       const userCredential = await createUserWithEmailAndPassword(
@@ -43,7 +45,7 @@ const useAuth = () => {
       });
 
       setUser({ ...userCredential.user, displayName: data.name });
-      setModalType(null); // Закрити модалку після успішної реєстрації
+      closeModal();
     } catch (error) {
       console.error("Помилка реєстрації:", error.message);
       setError("Цей email вже зареєстрований або дані некоректні."); // Встановлюємо текст помилки
