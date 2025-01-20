@@ -62,7 +62,7 @@ function AuthModal({ type, onSubmit, onClose }) {
         <form onSubmit={handleSubmit(onSubmit)}>
           {type === "signup" && (
             <div>
-              <label>Ім'я</label>
+              <label>Name</label>
               <input {...register("name")} />
               {errors.name && <p className="error">{errors.name.message}</p>}
             </div>
