@@ -9,7 +9,34 @@
 .link.active {
   color: #e84a5f;
 } */
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
 .icon {
-  /* fill: black; */
-  /* stroke: black; */
+  stroke: brown;
+  fill: none;
+  padding-right: 8px;
+}
+
+.buttonHed {
+  border: none;
+  background-color: transparent;
+  border-radius: 12px;
+  padding: 14px 39px;
+  width: 166px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+button:hover,
+button:focus {
+  background: #121417;
+  color: #fff;
 }

@@ -1,32 +1,39 @@
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import AuthModal from "../AuthModal/AuthModal";
-// import css from "./AuthNav.module.css";
+import IconSvg from "../IconSvg";
+import css from "./AuthNav.module.css";
+import clsx from "clsx";
 
 const AuthNav = () => {
   const [modalType, setModalType] = useState(null); // 'login' or 'signup'
   const { error: authError, handleLogin, handleSignUp } = useAuth();
 
   return (
-    <div>
-      <div>
-        <svg width="48" height="48">
-          <use href="../../img/symbol-defs.svg/#icon-ukraine">1111</use>
-        </svg>
-
-        <button onClick={() => setModalType("login")}>Log In</button>
-        <button onClick={() => setModalType("signup")}>Registration</button>
+    <>
+      <div className={css.container}>
+        <button className={css.buttonHed} onClick={() => setModalType("login")}>
+          <IconSvg
+            iconName="icon-log"
+            width="20"
+            height="20"
+            className={css.icon}
+          />{" "}
+          Log In
+        </button>
+        <button
+          className={css.buttonHed}
+          onClick={() => setModalType("signup")}
+        >
+          Registration
+        </button>
       </div>
 
-      {/* Відображення модального вікна */}
       {modalType && (
         <AuthModal
           type={modalType}
           onClose={() => setModalType(null)}
           onSubmit={(data) => {
-            // modalType === "login"
-            //   ? handleLogin(data, () => setModalType(null))
-            //   : handleSignUp(data, () => setModalType(null));
             if (modalType === "login") {
               handleLogin(data, () => setModalType(null));
             } else {
@@ -37,7 +44,7 @@ const AuthNav = () => {
       )}
 
       {authError && <p className="error">{authError}</p>}
-    </div>
+    </>
   );
 };
 export default AuthNav;

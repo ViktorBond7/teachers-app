@@ -1,4 +1,4 @@
-.header {
+/* .header {
   display: flex;
   padding-right: 20px;
   padding-left: 20px;
@@ -8,10 +8,26 @@
   border-bottom: 1px solid #2a363b;
   border-radius: 5px;
   box-shadow: 0px 0px 20px 20px rgba(5, 5, 5, 0.1);
-}
-.icon {
+} */
+/* .icon {
   .iconns {
     fill: none;
     stroke: black;
   }
+} */
+.header {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+p {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.4;
+  color: #121417;
 }

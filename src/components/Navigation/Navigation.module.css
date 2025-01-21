@@ -1,23 +1,28 @@
 .nav {
   display: flex;
-  gap: 4px;
+  gap: 28px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: #121417;
 }
 
-.link {
+/* .link {
   color: black;
   text-decoration: none;
   text-transform: uppercase;
-}
-
+} */
+/* 
 .link:hover {
   color: orange;
-}
+} */
 
-.active {
+/* .active {
   color: orange;
-}
+} */
 
-.container {
+/* .container {
   padding-bottom: 10px;
   margin-bottom: 20px;
-}
+} */
