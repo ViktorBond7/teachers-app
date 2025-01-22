@@ -17,7 +17,7 @@ const Teachers = () => {
   return (
     <div className="App">
       <h1>Firebase Auth with React</h1>
-      {data && <p>{JSON.stringify(data, null, 2)}</p>}
+      {/* {data && <p>{JSON.stringify(data, null, 2)}</p>} */}
 
       {hasMore && data && <button onClick={loadMoreData}>Load More</button>}
 

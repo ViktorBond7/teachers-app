@@ -13,22 +13,68 @@
 
 .modalContent {
   background-color: white;
-  padding: 20px;
+  padding: 70px 64px;
   border-radius: 8px;
-  width: 400px;
+  width: 438px;
   max-width: 90%;
   position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
 }
 
 .closeButton {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 24px;
+  right: 24px;
   border: none;
   background: none;
   font-size: 24px;
   cursor: pointer;
+  padding: 0;
+}
+.icon {
+  stroke: black;
+}
+.modalContent p {
+  font-family: var(--font-roboto);
+  font-size: 16px;
+  line-height: 21.92px;
+  color: rgba(18, 20, 23, 0.8);
+  width: 438px;
+  padding-bottom: 40px;
+}
+.modalContent h2 {
+  font-family: var(--font-roboto);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+  color: #121417;
+  padding-bottom: 20px;
+}
+.input {
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  padding-left: 18px;
+  width: 420px;
+  height: 54px;
+  margin-bottom: 18px;
+}
+
+.submit {
+  margin-top: 22px;
+  border-radius: 12px;
+  width: 438px;
+  height: 60px;
+  background-color: #f4c550;
+  border: none;
+  font-family: var(--roboto);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28.08px;
+  color: #121417;
+}
+.submit:hover,
+.submit:focus {
+  background-color: #ffdc86;
 }

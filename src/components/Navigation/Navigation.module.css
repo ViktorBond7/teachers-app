@@ -1,26 +1,26 @@
 .nav {
   display: flex;
   gap: 28px;
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 125%;
-  color: #121417;
 }
 
-/* .link {
+.link {
   color: black;
   text-decoration: none;
-  text-transform: uppercase;
-} */
+  font-family: var(--roboto);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #121417;
+  /* text-transform: uppercase; */
+}
 /* 
 .link:hover {
   color: orange;
 } */
 
-/* .active {
-  color: orange;
-} */
+.active {
+  color: var(--accent-hover);
+}
 
 /* .container {
   padding-bottom: 10px;

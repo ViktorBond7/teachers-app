@@ -17,6 +17,7 @@
   --accent-hover: #ffdc86;
   --background: #f8f8f8;
   /* --main-white: #fff; */
+  --font-roboto: "Roboto", sans-serif;
 }
 
 body {
@@ -65,3 +66,6 @@ img {
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 } */
+.container {
+  width: 1440px;
+}

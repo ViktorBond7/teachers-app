@@ -1,4 +1,5 @@
 import useAuth from "../../hooks/useAuth";
+import css from "./UserMenu.module.css";
 
 const UserMenu = () => {
   const {
@@ -9,11 +10,13 @@ const UserMenu = () => {
   } = useAuth();
 
   return (
-    <>
-      {user && <p>Вітаємо, {user.displayName}</p>}
-      <button onClick={handleLogout}>Log Out</button>
+    <div className={css.container}>
+      {user && <p>Welcome, {user.displayName}</p>}
+      <button className={css.buttonLogOut} onClick={handleLogout}>
+        Log Out
+      </button>
       {authError && <p className="error">{authError}</p>}
-    </>
+    </div>
   );
 };
 export default UserMenu;

@@ -35,7 +35,7 @@
   line-height: 20px;
 }
 
-button:hover,
+.buttonHed:hover,
 button:focus {
   background: #121417;
   color: #fff;

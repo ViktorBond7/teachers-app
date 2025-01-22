@@ -19,10 +19,12 @@ const AppBar = () => {
         />
         <p>LearnLingo</p>
       </div>
-      <div className={css.navigation}>
-        <Navigation />
+      <div className={css.containerNav}>
+        <div className={css.navigation}>
+          <Navigation />
+        </div>
+        <div>{user ? <UserMenu /> : <AuthNav />}</div>
       </div>
-      <div>{user ? <UserMenu /> : <AuthNav />}</div>
     </header>
   );
 };

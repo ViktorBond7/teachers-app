@@ -17,17 +17,26 @@
 } */
 .header {
   display: flex;
+  width: 1184px;
+  padding-left: 128px;
+  padding-right: 128px;
   align-items: center;
+  justify-content: space-between;
 }
 .logo {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-p {
+.logo p {
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.4;
   color: #121417;
+}
+.containerNav {
+  display: flex;
+  align-items: center;
+  gap: 250px;
 }
