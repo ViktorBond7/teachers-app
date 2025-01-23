@@ -1,5 +1,6 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -16,8 +17,10 @@
   --accent: #f4c550;
   --accent-hover: #ffdc86;
   --background: #f8f8f8;
+  --background-button: #fbe9ba;
   /* --main-white: #fff; */
   --font-roboto: "Roboto", sans-serif;
+  --italic: italic;
 }
 
 body {

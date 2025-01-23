@@ -1,0 +1,134 @@
+/* .container {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  width: 80%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+} */
+.containerRoot {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+.container {
+  display: grid;
+  grid-template-columns: 720px 1fr;
+  /* padding-left: 60px;
+  padding-right: 60px; */
+}
+.left {
+  /* flex: 1; */
+
+  padding-top: 92px;
+  padding-left: 36px;
+  /* width: 720px; */
+  background-color: var(--background);
+  border-radius: 30px;
+}
+
+.left h1 {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 56.16px;
+  letter-spacing: 0.96;
+  color: #121417;
+}
+
+.highlight {
+  font-style: var(--italic);
+  background-color: var(--background-button);
+  padding: 2px 6px;
+  border-radius: 8px;
+  width: 195px;
+  height: 40px;
+}
+
+.left p {
+  /* margin: 15px 0; */
+  font-size: 16px;
+  line-height: 21.92px;
+  letter-spacing: 0.32px;
+  color: #121417;
+}
+
+.btn {
+  border-radius: 12px;
+  width: 267px;
+  height: 60px;
+  background-color: var(--accent);
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28.08px;
+  color: #121417;
+}
+
+.btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.right {
+  /* flex: 1; */
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  align-items: center;
+  padding-left: 24px;
+}
+
+.right img {
+  max-width: 100%;
+  /* width: 568px; */
+
+  height: auto;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* gap: 20px; */
+  /* margin-top: 30px; */
+  /* padding: 122px; */
+  padding-left: 122px;
+  padding-right: 122px;
+  /* border-radius: 10px; */
+  /* width: 80%; */
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  /* border: 2px dashed #ccc; */
+  border: 1.5px dashed #9fb7ce;
+  border-radius: 30px;
+  width: 1068px;
+  height: 116px;
+}
+
+/* .stats div {
+  text-align: center;
+}
+
+.stats div span {
+  font-size: 20px;
+  font-weight: bold;
+} */
+.stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.number {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 31.92px;
+  letter-spacing: 0.56px;
+  color: #121417;
+}
+
+.label {
+  font-size: 14px;
+  line-height: 18.6px;
+  letter-spacing: 0.28px;
+  color: rgba(18, 20, 23, 0.7);
+}
