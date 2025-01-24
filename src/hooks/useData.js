@@ -7,7 +7,7 @@ import {
   startAfter,
 } from "firebase/database";
 import database from "../Firebase";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 const useData = () => {
   const [data, setData] = useState(null);
@@ -21,7 +21,7 @@ const useData = () => {
       ref(database, "/"),
       orderByKey(),
       startAfter(lastKey),
-      limitToFirst(10)
+      limitToFirst(4)
     );
 
     try {
@@ -50,9 +50,36 @@ const useData = () => {
     }
   };
 
-  const loadInitialData = async () => {
+  // const loadInitialData = async () => {
+  //   try {
+  //     const dataQuery = query(ref(database, "/"), limitToFirst(4));
+
+  //     const snapshot = await get(dataQuery);
+  //     if (snapshot.exists()) {
+  //       const items = snapshot.val();
+  //       const itemsArray = Object.entries(items).map(([key, value]) => ({
+  //         id: key,
+  //         ...value,
+  //       }));
+
+  //       setData(itemsArray);
+  //       setLastKey(itemsArray[itemsArray.length - 1].id);
+
+  //       if (itemsArray.length < 2) {
+  //         setHasMore(false);
+  //       }
+  //     } else {
+  //       setError("Немає даних у базі");
+  //       console.log("Немає даних у базі");
+  //     }
+  //   } catch (error) {
+  //     setError("Помилка при отриманні даних");
+  //     console.error("Помилка при отриманні даних:", error);
+  //   }
+  // };
+  const loadInitialData = useCallback(async () => {
     try {
-      const dataQuery = query(ref(database, "/"), limitToFirst(10));
+      const dataQuery = query(ref(database, "/"), limitToFirst(4));
 
       const snapshot = await get(dataQuery);
       if (snapshot.exists()) {
@@ -74,9 +101,9 @@ const useData = () => {
       }
     } catch (error) {
       setError("Помилка при отриманні даних");
-      console.error("Помилка при отриманні даних:", error);
+      console.error(error);
     }
-  };
+  }, []);
   return { data, loadInitialData, loadMoreData, hasMore, error };
 };
 
