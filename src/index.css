@@ -3,7 +3,7 @@
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
+  background-color: antiquewhite;
   color-scheme: light dark;
   color: #121417;
 
@@ -69,6 +69,6 @@ img {
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 } */
-.container {
+/* .container {
   width: 1440px;
-}
+} */

@@ -14,6 +14,7 @@ const useData = () => {
   const [lastKey, setLastKey] = useState(null);
   const [hasMore, setHasMore] = useState(true);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const loadMoreData = async () => {
     // if (!lastKey || !hasMore) return;

@@ -1,15 +1,14 @@
 // import useData from "../../hooks/useData";
 import TeacherItem from "../TeacherItem/TeacherItem";
+import css from "./TeachersList.module.css";
 
 const TeachersList = ({ teacher }) => {
-  //   const { data } = useData();
-  //   console.log("dddddddd", data);
-
   if (!teacher || teacher.length === 0) {
     return <p>No teachers found.</p>;
   }
+
   return (
-    <ul>
+    <ul className={css.list}>
       {teacher.map((teacher) => (
         <TeacherItem key={teacher.id} teacher={teacher} />
       ))}

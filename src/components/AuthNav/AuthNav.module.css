@@ -36,7 +36,7 @@
 }
 
 .buttonHed:hover,
-button:focus {
+.buttonHed:focus {
   background: #121417;
   color: #fff;
 }

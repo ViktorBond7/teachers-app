@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  gap: 8px;
+}
+.list {
+  border-radius: 35px;
+  border: 1px solid rgba(18, 20, 23, 0.2);
+
+  padding: 0 12px;
+  height: 32px;
+  line-height: 0;
+  align-items: center;
+  display: flex;
+  height: 32px;
+}
+.list p {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 15.96px;
+}
+.container li:nth-child(1) {
+  background-color: var(--accent);
+}

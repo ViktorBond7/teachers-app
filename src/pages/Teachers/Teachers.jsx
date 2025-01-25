@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import useData from "../../hooks/useData";
 import TeachersList from "../../components/TeachersList/TeachersList";
+import css from "./Teachers.module.css";
 
 const Teachers = () => {
   const {
@@ -24,7 +25,11 @@ const Teachers = () => {
         ))}
       {/* {data && <p>{JSON.stringify(data, null, 2)}</p>} */}
       <TeachersList teacher={data} />
-      {hasMore && data && <button onClick={loadMoreData}>Load More</button>}
+      {hasMore && data && (
+        <button className={css.buttonMore} onClick={loadMoreData}>
+          Load More
+        </button>
+      )}
 
       {dataError && <p>{dataError}</p>}
     </div>
