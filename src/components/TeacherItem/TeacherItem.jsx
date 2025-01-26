@@ -1,7 +1,21 @@
+import { Link, Outlet, useLocation } from "react-router-dom";
 import IconSvg from "../IconSvg";
 import Levels from "../Levels/Levels";
 import css from "./TeacherItem.module.css";
+import { useEffect, useState } from "react";
+
 const TeacherItem = ({ teacher }) => {
+  const [button, setButton] = useState(false);
+  const [isOpen, setIsopen] = useState(false);
+  const location = useLocation();
+
+  const handleClick = () => {
+    setIsopen((prev) => !prev);
+  };
+  useEffect(() => {
+    setButton(location.pathname === "/teachers/about");
+  }, [location.pathname]);
+
   return (
     <>
       <li className={css.containerRoot}>
@@ -69,8 +83,29 @@ const TeacherItem = ({ teacher }) => {
               <span>Conditions:</span> {teacher.conditions}
             </p>
           </div>
-          <button className={css.buttonReadMore}>Read more</button>
+
+          {!button || !isOpen ? (
+            <Link to="about">
+              <button
+                className={css.buttonReadMore}
+                onClick={() => {
+                  setButton(true);
+                  handleClick();
+                }}
+              >
+                Read more
+              </button>
+            </Link>
+          ) : (
+            <p className={css.pageExperience}>{teacher.experience}</p>
+          )}
+          {isOpen && <Outlet context={{ teacher }} />}
           <Levels levels={teacher} />
+          {isOpen && (
+            <button type="submit" className={css.bookTrial}>
+              Book trial lesson
+            </button>
+          )}
         </div>
       </li>
     </>

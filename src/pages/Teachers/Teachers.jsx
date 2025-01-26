@@ -19,10 +19,9 @@ const Teachers = () => {
 
   return (
     <div>
-      {dataError ||
-        ((data === null || data.length === 0) && (
-          <p>Oops, there was an error, please try reloading!!!</p>
-        ))}
+      {/* {(data === null || data.length === 0) && (
+        <p>Oops, there was an error, please try reloading!!!</p>
+      )} */}
       {/* {data && <p>{JSON.stringify(data, null, 2)}</p>} */}
       <TeachersList teacher={data} />
       {hasMore && data && (
