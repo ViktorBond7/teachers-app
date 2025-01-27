@@ -36,18 +36,15 @@ function AuthModal({ type, onSubmit, onClose }) {
     }
   };
 
-  // Закриття модалки по натисканню клавіші ESC
   useEffect(() => {
     const handleEsc = (event) => {
       if (event.key === "Escape") {
-        onClose(); // Викликаємо функцію закриття модалки
+        onClose();
       }
     };
 
-    // Додаємо обробник події при монтуванні
     window.addEventListener("keydown", handleEsc);
 
-    // Очищуємо обробник події при розмонтуванні
     return () => {
       window.removeEventListener("keydown", handleEsc);
     };

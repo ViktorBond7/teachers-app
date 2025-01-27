@@ -1,0 +1,165 @@
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 70px 64px;
+  border-radius: 30px;
+  width: 472px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow-y: auto; 
+}
+
+.closeButton {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border: none;
+  background: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon {
+  stroke: black;
+}
+
+.pageExperienced {
+  font-size: 16px;
+  line-height: 21.92px;
+  color: rgba(18, 20, 23, 0.8);
+  width: 438px;
+  padding-bottom: 20px;
+}
+
+.modalContent h2 {
+  font-family: var(--font-roboto);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+  color: #121417;
+  padding-bottom: 20px;
+}
+
+.modalContent h3 {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 31, 92px;
+  padding-bottom: 20px;
+}
+
+.pageName span {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15, 96px;
+  color: #8a8a89;
+}
+
+.pageName p {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.contRadio {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 40px;
+}
+
+.contRadio label {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21.92px;
+  text-align: center;
+  display: flex;
+  gap: 8px;
+  align-content: center;
+}
+
+.contRadio input {
+  appearance: none; /* Приховуємо стандартний вигляд */
+  width: 24px;
+  height: 24px;
+  border: 2px solid #8a8a89; /* Колір рамки */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 0px;
+}
+
+.contRadio input:checked {
+  background-color: #fbbc05; /* Колір при виборі */
+  border: 5px solid white;
+  box-shadow: 0 0 0 2px #fbbc05; /* Зовнішня обводка */
+}
+
+.containerInfo input {
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  padding-left: 18px;
+  width: 454px;
+  height: 54px;
+  margin-bottom: 18px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  color: #121417;
+}
+
+.imgContent {
+  display: flex;
+  gap: 14px;
+  padding-bottom: 40px;
+}
+.teacherImg {
+  width: 44px;
+  border-radius: 100%;
+}
+.pageName {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.submit {
+  margin-top: 22px;
+  border-radius: 12px;
+  width: 438px;
+  height: 60px;
+  background-color: #f4c550;
+  border: none;
+  font-family: var(--roboto);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28.08px;
+  color: #121417;
+}
+.submit:hover,
+.submit:focus {
+  background-color: #ffdc86;
+}
+
+.modalContent .error {
+  color: red;
+  font-size: 12px;
+}
+
+

@@ -3,7 +3,6 @@ import useAuth from "../../hooks/useAuth";
 import AuthModal from "../AuthModal/AuthModal";
 import IconSvg from "../IconSvg";
 import css from "./AuthNav.module.css";
-import clsx from "clsx";
 
 const AuthNav = () => {
   const [modalType, setModalType] = useState(null); // 'login' or 'signup'

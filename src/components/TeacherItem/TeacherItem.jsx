@@ -3,10 +3,12 @@ import IconSvg from "../IconSvg";
 import Levels from "../Levels/Levels";
 import css from "./TeacherItem.module.css";
 import { useEffect, useState } from "react";
+import BookModal from "../BookModal/BookModal";
 
 const TeacherItem = ({ teacher }) => {
   const [button, setButton] = useState(false);
   const [isOpen, setIsopen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
 
   const handleClick = () => {
@@ -102,12 +104,19 @@ const TeacherItem = ({ teacher }) => {
           {isOpen && <Outlet context={{ teacher }} />}
           <Levels levels={teacher} />
           {isOpen && (
-            <button type="submit" className={css.bookTrial}>
+            <button
+              type="submit"
+              className={css.bookTrial}
+              onClick={() => setIsModalOpen(true)}
+            >
               Book trial lesson
             </button>
           )}
         </div>
       </li>
+      {isModalOpen && (
+        <BookModal teacher={teacher} onClose={() => setIsModalOpen(false)} />
+      )}
     </>
   );
 };
