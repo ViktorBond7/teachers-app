@@ -43,6 +43,7 @@
 
 .header {
   display: flex;
+  align-items: center;
 }
 
 .header .icon {
@@ -71,14 +72,23 @@
   color: #121417;
 }
 
-.iconFavorites {
-  position: absolute;
-  top: 22px;
-  right: 22px;
+.iconNotFavorite {
   fill: none;
   stroke: #121417;
 }
 
+.iconFavorite {
+  fill: #f4c550;
+  stroke: #f4c550;
+}
+.buttonFavorites {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  margin-left: 86px;
+}
 .svg {
   display: flex;
   align-items: center;

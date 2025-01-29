@@ -1,4 +1,3 @@
-// import useData from "../../hooks/useData";
 import TeacherItem from "../TeacherItem/TeacherItem";
 import css from "./TeachersList.module.css";
 

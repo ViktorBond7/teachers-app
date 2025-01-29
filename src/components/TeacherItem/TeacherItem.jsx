@@ -1,22 +1,65 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import IconSvg from "../IconSvg";
 import Levels from "../Levels/Levels";
 import css from "./TeacherItem.module.css";
 import { useEffect, useState } from "react";
 import BookModal from "../BookModal/BookModal";
+import { ref, set, remove, get } from "firebase/database";
+import database, { auth } from "../../Firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 const TeacherItem = ({ teacher }) => {
-  const [button, setButton] = useState(false);
   const [isOpen, setIsopen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const location = useLocation();
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [setUserAuth] = useState(null);
 
   const handleClick = () => {
     setIsopen((prev) => !prev);
   };
+
   useEffect(() => {
-    setButton(location.pathname === "/teachers/about");
-  }, [location.pathname]);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUserAuth(currentUser);
+      if (!currentUser) {
+        setUserAuth([]);
+        setIsFavorite(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const user = auth.currentUser;
+
+  useEffect(() => {
+    if (!user) return;
+
+    const checkFavorite = async () => {
+      const teacherRef = ref(database, `favorites/${user.uid}/${teacher.id}`);
+      const snapshot = await get(teacherRef);
+      setIsFavorite(snapshot.exists());
+    };
+
+    checkFavorite();
+  }, [teacher.id, user]);
+
+  const handleClickFavorit = async () => {
+    if (!user) {
+      alert("Log in to your account to add a teacher to your favorites!");
+      return;
+    }
+
+    const teacherRef = ref(database, `favorites/${user.uid}/${teacher.id}`);
+
+    if (isFavorite) {
+      await remove(teacherRef);
+    } else {
+      await set(teacherRef, teacher);
+    }
+
+    setIsFavorite(!isFavorite);
+  };
 
   return (
     <>
@@ -65,12 +108,17 @@ const TeacherItem = ({ teacher }) => {
                 <span className={css.price}>{teacher.price_per_hour}$</span>
               </span>
             </p>
-            <IconSvg
-              iconName="icon-Vector-9"
-              width="26"
-              height="26"
-              className={css.iconFavorites}
-            />
+            <button
+              onClick={handleClickFavorit}
+              className={css.buttonFavorites}
+            >
+              <IconSvg
+                iconName="icon-Vector-9"
+                width="26"
+                height="26"
+                className={isFavorite ? css.iconFavorite : css.iconNotFavorite}
+              />
+            </button>
           </div>
           <h3>{`${teacher.name} ${teacher.surname}`}</h3>
           <div className={css.pageContext}>
@@ -86,12 +134,12 @@ const TeacherItem = ({ teacher }) => {
             </p>
           </div>
 
-          {!button || !isOpen ? (
+          {!isOpen ? (
             <Link to="about">
               <button
                 className={css.buttonReadMore}
                 onClick={() => {
-                  setButton(true);
+                  // setButton(true);
                   handleClick();
                 }}
               >

@@ -17,10 +17,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 const database = getDatabase(app);
 
-// Функція для входу через Google
+export default database;
+
+// / Функція для входу через Google
 export const signInWithGoogle = (setUser) => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
@@ -38,5 +40,3 @@ export const signInWithGoogle = (setUser) => {
       console.error("Помилка авторизації:", error);
     });
 };
-
-export default database;

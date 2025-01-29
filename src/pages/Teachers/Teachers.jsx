@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import useData from "../../hooks/useData";
 import TeachersList from "../../components/TeachersList/TeachersList";
 import css from "./Teachers.module.css";
+import Loader from "../../components/Loader/Loader";
 
 const Teachers = () => {
   const {
@@ -9,13 +10,13 @@ const Teachers = () => {
     loadInitialData,
     loadMoreData,
     hasMore,
+    loading,
     error: dataError,
   } = useData();
 
   useEffect(() => {
     loadInitialData();
   }, [loadInitialData]);
-  console.log("2222222222", data);
 
   return (
     <div>
@@ -23,6 +24,7 @@ const Teachers = () => {
         <p>Oops, there was an error, please try reloading!!!</p>
       )} */}
       {/* {data && <p>{JSON.stringify(data, null, 2)}</p>} */}
+      {loading && <Loader />}
       <TeachersList teacher={data} />
       {hasMore && data && (
         <button className={css.buttonMore} onClick={loadMoreData}>

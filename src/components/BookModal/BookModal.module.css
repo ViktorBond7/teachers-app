@@ -20,7 +20,7 @@
   display: flex;
   flex-direction: column;
   max-height: 90vh;
-  overflow-y: auto; 
+  overflow-y: auto;
 }
 
 .closeButton {
@@ -159,7 +159,5 @@
 
 .modalContent .error {
   color: red;
-  font-size: 12px;
+  font-size: 14px;
 }
-
-

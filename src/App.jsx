@@ -4,6 +4,7 @@ import HomePage from "./pages/Home/Home";
 import Teachers from "./pages/Teachers/Teachers";
 import AppBar from "./components/AppBar/AppBar";
 import RiadMore from "./components/RiadMore/RiadMore";
+import Favorites from "./pages/Favorites/Favorites";
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/teachers" element={<Teachers />}>
+          <Route path="about" element={<RiadMore />} />
+        </Route>
+        <Route path="/favorites" element={<Favorites />}>
           <Route path="about" element={<RiadMore />} />
         </Route>
       </Routes>
