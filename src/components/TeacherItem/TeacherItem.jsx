@@ -12,7 +12,7 @@ const TeacherItem = ({ teacher }) => {
   const [isOpen, setIsopen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [setUserAuth] = useState(null);
+  const [userAuth, setUserAuth] = useState(null);
 
   const handleClick = () => {
     setIsopen((prev) => !prev);
