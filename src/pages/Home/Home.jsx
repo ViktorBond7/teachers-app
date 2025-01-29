@@ -36,7 +36,7 @@ const HomePage = () => {
           </button>
         </div>
         <div className={css.right}>
-          <img src="/public/img/block.png" alt="Emoji with Laptop" />
+          <img src="../../img/block.png" alt="Emoji with Laptop" />
         </div>
       </div>
 
