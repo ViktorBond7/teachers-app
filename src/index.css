@@ -25,9 +25,7 @@
 
 body {
   display: flex;
-  padding-left: 122px;
-  padding-right: 122px;
-  align-items: center;
+  /* align-items: center; */
 
   overflow-x: hidden;
 }
