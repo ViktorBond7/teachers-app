@@ -24,7 +24,7 @@ const useData = () => {
       ref(database, "/teachers"),
       orderByKey(),
       startAfter(lastKey),
-      limitToFirst(10)
+      limitToFirst(4)
     );
 
     try {
@@ -44,7 +44,7 @@ const useData = () => {
       setData((prevData) => [...prevData, ...itemsArray]);
       setLastKey(itemsArray[itemsArray.length - 1].id);
 
-      if (itemsArray.length < 2) {
+      if (itemsArray.length < 3) {
         setHasMore(false);
       }
     } catch (error) {
@@ -57,8 +57,9 @@ const useData = () => {
   const loadInitialData = useCallback(async () => {
     setError(null);
     setLoading(true);
+    setHasMore(false);
     try {
-      const dataQuery = query(ref(database, "/teachers"), limitToFirst(10));
+      const dataQuery = query(ref(database, "/teachers"), limitToFirst(4));
 
       const snapshot = await get(dataQuery);
       if (snapshot.exists()) {
@@ -71,8 +72,10 @@ const useData = () => {
         setData(itemsArray);
         setLastKey(itemsArray[itemsArray.length - 1].id);
 
-        if (itemsArray.length < 2) {
+        if (itemsArray.length < 3) {
           setHasMore(false);
+        } else {
+          setHasMore(true);
         }
       }
     } catch (error) {

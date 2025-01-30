@@ -1,0 +1,28 @@
+.containerFilter {
+  display: flex;
+  padding-left: 122px;
+  padding-right: 122px;
+  gap: 20px;
+  padding-bottom: 32px;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+}
+.option label {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  color: #8a8a89;
+  padding-bottom: 8px;
+}
+.option select {
+  border-radius: 14px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  color: #121417;
+  width: 221px;
+  height: 48px;
+}

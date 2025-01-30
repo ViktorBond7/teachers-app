@@ -5,6 +5,7 @@ import Teachers from "./pages/Teachers/Teachers";
 import AppBar from "./components/AppBar/AppBar";
 import RiadMore from "./components/RiadMore/RiadMore";
 import Favorites from "./pages/Favorites/Favorites";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/favorites" element={<Favorites />}>
           <Route path="about" element={<RiadMore />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

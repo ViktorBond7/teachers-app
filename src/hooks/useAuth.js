@@ -5,7 +5,6 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
   onAuthStateChanged,
-  signOut,
 } from "firebase/auth";
 
 const useAuth = () => {
@@ -15,7 +14,7 @@ const useAuth = () => {
   const auth = getAuth();
   const handleLogin = async (data, closeModal) => {
     try {
-      setError(null); // Очищення помилок перед логіном
+      setError(null); 
       const userCredential = await signInWithEmailAndPassword(
         auth,
         data.email,
@@ -25,21 +24,21 @@ const useAuth = () => {
       closeModal();
     } catch (error) {
       console.error("Помилка логіну:", error.message);
-      setError("Неправильний email або пароль."); // Встановлюємо текст помилки
+      setError("Неправильний email або пароль."); 
     }
   };
 
-  // Функція для реєстрації
+  
   const handleSignUp = async (data, closeModal) => {
     try {
-      setError(null); // Очищення помилок перед реєстрацією
+      setError(null);
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         data.email,
         data.password
       );
 
-      // Оновлюємо профіль користувача в Firebase, додаємо ім'я
+      
       await updateProfile(userCredential.user, {
         displayName: data.name,
       });
@@ -48,11 +47,11 @@ const useAuth = () => {
       closeModal();
     } catch (error) {
       console.error("Помилка реєстрації:", error.message);
-      setError("Цей email вже зареєстрований або дані некоректні."); // Встановлюємо текст помилки
+      setError("Цей email вже зареєстрований або дані некоректні."); 
     }
   };
 
-  // Функція для виходу
+ 
   const handleLogout = () => {
     auth.signOut();
     setUser(null);
@@ -67,7 +66,7 @@ const useAuth = () => {
       }
     });
 
-    // Очищення підписки при розмонтуванні компонента
+   
     return () => unsubscribe();
   }, [auth]);
 

@@ -1,22 +1,10 @@
-/* .link {
-  display: inline-block;
-  text-decoration: none;
-  padding: 12px;
-  font-weight: 700;
-  color: #2a363b;
-}
-
-.link.active {
-  color: #e84a5f;
-} */
-
 .container {
   display: flex;
   align-items: center;
 }
 
 .icon {
-  stroke: brown;
+  stroke: #f4c550;
   fill: none;
   padding-right: 8px;
 }

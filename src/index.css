@@ -3,7 +3,7 @@
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  background-color: #9e9898;
+  background-color: beige;
   color-scheme: light dark;
   color: #121417;
 
@@ -25,7 +25,8 @@
 
 body {
   display: flex;
-
+  padding-left: 122px;
+  padding-right: 122px;
   align-items: center;
 
   overflow-x: hidden;
@@ -64,11 +65,3 @@ img {
   max-width: 100%;
   height: auto;
 }
-
-/* button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
-/* .container {
-  width: 1440px;
-} */

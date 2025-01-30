@@ -13,16 +13,7 @@
   color: #121417;
   /* text-transform: uppercase; */
 }
-/* 
-.link:hover {
-  color: orange;
-} */
 
 .active {
   color: var(--accent-hover);
 }
-
-/* .container {
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-} */
