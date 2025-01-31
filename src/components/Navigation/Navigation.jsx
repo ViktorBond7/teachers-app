@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import css from "./Navigation.module.css";
-import { auth } from "../../firebase";
+import { auth } from "../../Firebase";
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);

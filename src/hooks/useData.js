@@ -6,7 +6,7 @@ import {
   ref,
   startAfter,
 } from "firebase/database";
-import database from "../firebase";
+import database from "../Firebase";
 import { useCallback, useState } from "react";
 
 const useData = () => {
