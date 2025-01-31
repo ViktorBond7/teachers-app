@@ -15,8 +15,10 @@
 .containerImg {
   border: 3px solid #fbe9ba;
   border-radius: 100px;
-  width: 120px;
-  height: 120px;
+  max-width: 120px;
+  width: 100%;
+  max-height: 120px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,7 +32,8 @@
   right: 24px;
 }
 .containerLeft {
-  width: 968px;
+  max-width: 968px;
+  width: 100%;
 }
 .containerLeft h3 {
   font-weight: 500;
@@ -44,6 +47,7 @@
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .header .icon {
@@ -57,13 +61,16 @@
 }
 
 .pageLanguages {
-  padding-right: 192px;
+  /* padding-right: 192px; */
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   color: #8a8a89;
+  padding-right: 10px;
 }
-
+.info {
+  display: flex;
+}
 .pageSpan {
   display: flex;
   font-weight: 500;
@@ -112,6 +119,16 @@
   line-height: 24px;
   padding: 0;
   margin-bottom: 32px;
+  height: 30px;
+}
+
+.buttonReadMore:hover,
+.buttonReadMore:focus {
+  background: #121417;
+  color: #fff;
+  width: 90px;
+  height: 30px;
+  border-radius: 12px;
 }
 
 .pageContext {

@@ -4,17 +4,17 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB3l5bUJUJA-0wimluYTyAtiPDIcH2O6Zk",
-  authDomain: "teachers-app-147bf.firebaseapp.com",
-  databaseURL:
-    "https://teachers-app-147bf-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "teachers-app-147bf",
-  storageBucket: "teachers-app-147bf.firebasestorage.app",
-  messagingSenderId: "662700529137",
-  appId: "1:662700529137:web:f2cbd859baa5b027dc6050",
-  measurementId: "G-B9GGZ0PWG9",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
-
+const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
+console.log(apiKey); // Должен вывести ваш API-ключ
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);

@@ -6,7 +6,6 @@ const Levels = ({ levels }) => {
       {levels.levels.map((level, index) => (
         <li className={css.list} key={index}>
           <p>#{level}</p>
-          {/* <button>{level}</button> */}
         </li>
       ))}
     </ul>

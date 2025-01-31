@@ -1,6 +1,8 @@
 .nav {
   display: flex;
   gap: 28px;
+  align-items: center;
+  justify-content: center;
 }
 
 .link {
@@ -11,9 +13,19 @@
   font-size: 16px;
   line-height: 20px;
   color: #121417;
-  /* text-transform: uppercase; */
 }
 
 .active {
   color: var(--accent-hover);
+}
+.link:hover,
+.link:focus {
+  background: #121417;
+  color: #fff;
+  width: 90px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
