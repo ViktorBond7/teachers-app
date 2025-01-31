@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import TeachersList from "../../components/TeachersList/TeachersList";
 import { ref, onValue } from "firebase/database";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import database from "../../firebase";
 import css from "./Favorites.module.css";
+import database from "../../firebase";
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
