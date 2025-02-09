@@ -1,19 +1,7 @@
-import { useState } from "react";
-import AuthModal from "../../components/AuthModal/AuthModal";
-
-import useAuth from "../../hooks/useAuth";
 import css from "./Home.module.css";
 import { useNavigate } from "react-router-dom";
 const HomePage = () => {
   const navigate = useNavigate();
-  // const [modalType, setModalType] = useState(null); // 'login' or 'signup'
-  // const {
-  //   user,
-  //   error: authError,
-  //   handleLogin,
-  //   handleSignUp,
-  //   handleLogout,
-  // } = useAuth();
 
   const handleClick = () => {
     navigate("/teachers");

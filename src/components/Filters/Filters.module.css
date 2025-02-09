@@ -28,4 +28,11 @@
   width: 221px;
   height: 48px;
   cursor: pointer;
+  padding-right: 50px;
+  /* appearance: none; */
 }
+/* button,
+select,  
+input {
+  all: unset;
+} */

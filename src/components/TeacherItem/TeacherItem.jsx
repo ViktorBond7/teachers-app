@@ -5,7 +5,7 @@ import css from "./TeacherItem.module.css";
 import { useEffect, useState } from "react";
 import BookModal from "../BookModal/BookModal";
 import { ref, set, remove, get } from "firebase/database";
-import database, { auth } from "../../firebase";
+import database, { auth } from "../../Firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -96,6 +96,7 @@ const TeacherItem = ({ teacher }) => {
                 <span className={css.svgAfter}>
                   Lessons done: {teacher.lessons_done}
                 </span>
+                {/* <span className={css.svgAfter}>Lessons done: {teacher.id}</span> */}
                 <span className={`${css.svg} ${css.svgAfter}`}>
                   {" "}
                   <IconSvg

@@ -1,11 +1,15 @@
 import css from "./Filters.module.css";
 
-const Filters = ({ setLanguage, setLevel, setPrice }) => {
+const Filters = ({ setLanguage, setLevel, setPrice, applyFilter }) => {
   return (
     <div className={css.containerFilter}>
       <div className={css.option}>
         <label htmlFor="language">Languages</label>
-        <select id="language" onChange={(e) => setLanguage(e.target.value)}>
+        <select
+          name="language"
+          id="language"
+          onChange={(e) => setLanguage(e.target.value)}
+        >
           <option value="">All Languages</option>
           <option value="French">French</option>
           <option value="English">English</option>

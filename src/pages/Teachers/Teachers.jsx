@@ -3,7 +3,7 @@ import useData from "../../hooks/useData";
 import TeachersList from "../../components/TeachersList/TeachersList";
 import css from "./Teachers.module.css";
 import Loader from "../../components/Loader/Loader";
-import useFilter from "../../hooks/useFilter";
+import useFilteredTeachers from "../../hooks/useFilter";
 import Filters from "../../components/Filters/Filters";
 
 const Teachers = () => {
@@ -16,12 +16,12 @@ const Teachers = () => {
     error: dataError,
   } = useData();
 
+  const { filteredTeachers, setLanguage, setLevel, setPrice } =
+    useFilteredTeachers(data, loadInitialData);
+
   useEffect(() => {
     loadInitialData();
   }, [loadInitialData]);
-  const { filteredTeachers, setLanguage, setLevel, setPrice } = useFilter(
-    data || []
-  );
 
   return (
     <div>
