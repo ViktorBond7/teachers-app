@@ -34,9 +34,11 @@ const Teachers = () => {
         setLevel={setLevel}
         setPrice={setPrice}
       />
-      {loading && <Loader />}
+
       {data && <TeachersList teacher={filteredTeachers} />}
-      {hasMore && data && (
+
+      {loading && <Loader />}
+      {hasMore && !loading && data && (
         <button className={css.buttonMore} onClick={loadMoreData}>
           Load More
         </button>

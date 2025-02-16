@@ -96,7 +96,6 @@ const TeacherItem = ({ teacher }) => {
                 <span className={css.svgAfter}>
                   Lessons done: {teacher.lessons_done}
                 </span>
-                {/* <span className={css.svgAfter}>Lessons done: {teacher.id}</span> */}
                 <span className={`${css.svg} ${css.svgAfter}`}>
                   {" "}
                   <IconSvg
