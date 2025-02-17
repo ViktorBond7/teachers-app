@@ -25,10 +25,6 @@ const Teachers = () => {
 
   return (
     <div>
-      {/* {(data === null || data.length === 0) && (
-        <p>Oops, there was an error, please try reloading!!!</p>
-      )} */}
-      {/* {data && <p>{JSON.stringify(data, null, 2)}</p>} */}
       <Filters
         setLanguage={setLanguage}
         setLevel={setLevel}

@@ -6,7 +6,6 @@ const useFilteredTeachers = (teachers, fetchMoreData) => {
   const [price, setPrice] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [prevTeachers, setPrevTeachers] = useState([]);
-  console.log(prevTeachers);
 
   useEffect(() => {
     setPrevTeachers((prev) => {
@@ -35,7 +34,6 @@ const useFilteredTeachers = (teachers, fetchMoreData) => {
   useEffect(() => {
     if (filteredData.length < 4) {
       fetchMoreData();
-      console.log("🔄 Дозавантаження...");
     }
   }, [filteredData, fetchMoreData]);
 

@@ -1,7 +1,6 @@
 import {
   get,
   limitToFirst,
-  limitToLast,
   orderByKey,
   query,
   ref,
