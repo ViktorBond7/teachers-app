@@ -21,8 +21,7 @@
 .active {
   color: var(--accent-hover);
 }
-.link:hover,
-.link:focus {
+.link:hover {
   background: #121417;
   color: #fff;
   width: 70px;
