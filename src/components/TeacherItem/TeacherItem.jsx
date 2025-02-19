@@ -47,7 +47,7 @@ const TeacherItem = ({ teacher }) => {
 
   const handleClickFavorit = async () => {
     if (!user) {
-      toast.info("Log in to your account to add a teacher to your favorites!");
+      toast.error("Log in to your account to add a teacher to your favorites!");
       return;
     }
 
@@ -145,7 +145,6 @@ const TeacherItem = ({ teacher }) => {
               <button
                 className={css.buttonReadMore}
                 onClick={() => {
-                  // setButton(true);
                   handleClick();
                 }}
               >

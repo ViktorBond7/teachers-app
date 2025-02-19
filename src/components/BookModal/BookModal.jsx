@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./BookModal.module.css";
 import IconSvg from "../IconSvg";
+import { toast, ToastContainer } from "react-toastify";
 
 const schema = yup.object().shape({
   reason: yup.string().required("Please select a reason"),
@@ -44,13 +45,17 @@ const BookModal = ({ teacher, onClose }) => {
       window.removeEventListener("keydown", handleEsc);
     };
   }, [onClose]);
+
   const onSubmit = (data) => {
-    console.log("Form Data:", data);
-    onClose();
+    toast.info("You booked a trial lesson");
+    setTimeout(() => {
+      onClose();
+    }, 1000);
   };
 
   return (
     <div className={css.modalBackdrop} onClick={handleBackdropClick}>
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className={css.modalContent}>
         <button className={css.closeButton} onClick={onClose}>
           <IconSvg

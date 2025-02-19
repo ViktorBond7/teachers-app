@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./AuthModal.module.css";
 import IconSvg from "../IconSvg";
+import PasswordInput from "../PasswordInput/PasswordInput";
 
 function AuthModal({ type, onSubmit, onClose }) {
   const schema = yup.object().shape({
@@ -30,7 +31,6 @@ function AuthModal({ type, onSubmit, onClose }) {
   });
 
   const handleBackdropClick = (event) => {
-    // event.stopPropagation();
     if (event.target === event.currentTarget) {
       onClose();
     }
@@ -86,11 +86,10 @@ function AuthModal({ type, onSubmit, onClose }) {
             {errors.email && <p className="error">{errors.email.message}</p>}
           </div>
           <div>
-            <input
-              type="password"
-              {...register("password")}
-              placeholder="Password"
+            <PasswordInput
               className={css.input}
+              {...register("password")}
+              placeholder="Enter your password"
             />
             {errors.password && (
               <p className="error">{errors.password.message}</p>

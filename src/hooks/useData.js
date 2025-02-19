@@ -15,7 +15,6 @@ const useData = () => {
   const [hasMore, setHasMore] = useState(true);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  // const [lastKey, setLastKey] = useState(null);
 
   const loadInitialData = useCallback(
     async (currentData = [], currentLastKey = lastKeyRef.current) => {
@@ -96,7 +95,6 @@ const useData = () => {
       const newLastKey = itemsArray[itemsArray.length - 1]?.id;
 
       lastKeyRef.current = newLastKey;
-      // setLastKey(newLastKey);
 
       if (itemsArray.length < 4) {
         setHasMore(false);
