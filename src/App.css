@@ -2,3 +2,9 @@
   max-width: 1440px;
   margin: 0 auto;
 }
+@media (prefers-color-scheme: dark) {
+  select {
+    background-color: #fff;
+    color: #121417;
+  }
+}

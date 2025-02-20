@@ -111,7 +111,7 @@
 
 .buttonReadMore {
   border: none;
-  background: inherit;
+  background: #fff;
   text-decoration: underline;
   font-weight: 500;
   font-size: 16px;
@@ -119,10 +119,10 @@
   padding: 0;
   margin-bottom: 32px;
   height: 30px;
+  color: #121417;
 }
 
-.buttonReadMore:hover,
-.buttonReadMore:focus {
+.buttonReadMore:hover {
   background: #121417;
   color: #fff;
   width: 90px;
@@ -146,7 +146,6 @@
 
 .pageContext .speak {
   position: relative;
-  /* display: inline-block; */
   padding-bottom: 0;
   color: #121417;
 }
