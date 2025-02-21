@@ -19,7 +19,7 @@
 }
 
 .active {
-  color: var(--accent-hover);
+  color: var(--accent);
 }
 .link:hover {
   background: #121417;

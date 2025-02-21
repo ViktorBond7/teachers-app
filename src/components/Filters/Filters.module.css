@@ -3,7 +3,13 @@
   padding-left: 122px;
   padding-right: 122px;
   gap: 20px;
+  padding-bottom: 16px;
   padding-bottom: 32px;
+  /* z-index: 100;
+  position: fixed;
+  background-color: #eeeeee;
+  width: 100%; */
+  /* padding-top: 84px; */
 }
 
 .option {

@@ -7,15 +7,14 @@ import IconSvg from "../IconSvg";
 import { toast, ToastContainer } from "react-toastify";
 
 const schema = yup.object().shape({
-  reason: yup.string().required("Please select a reason"),
+  reason: yup.string().required("Please choose one of the options"),
   fullName: yup.string().required("Full Name is required"),
   email: yup.string().email("Invalid email").required("Email is required"),
   phone: yup
     .string()
-    .matches(/^\d+$/, "Phone must be a number")
+    .matches(/^\+?[\d\s\-()]{10,20}$/, "Phone must be a number")
     .required("Phone number is required"),
 });
-
 const BookModal = ({ teacher, onClose }) => {
   const {
     register,

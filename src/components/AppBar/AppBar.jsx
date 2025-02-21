@@ -4,13 +4,14 @@ import Navigation from "../Navigation/Navigation";
 import UserMenu from "../UserMenu/UserMenu";
 import css from "./AppBar.module.css";
 import IconSvg from "../IconSvg";
+import { Link } from "react-router-dom";
 
 const AppBar = () => {
   const { user } = useAuth();
 
   return (
     <header className={css.header}>
-      <div className={css.logo}>
+      <Link to="/" className={css.logo}>
         <IconSvg
           iconName="icon-ukraine"
           width="28"
@@ -18,7 +19,8 @@ const AppBar = () => {
           className={css.icon}
         />
         <p>LearnLingo</p>
-      </div>
+      </Link>
+
       <div className={css.containerNav}>
         <div className={css.navigation}>
           <Navigation />

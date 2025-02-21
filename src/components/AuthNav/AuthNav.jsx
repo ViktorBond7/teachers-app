@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import AuthModal from "../AuthModal/AuthModal";
 import IconSvg from "../IconSvg";
@@ -7,6 +7,15 @@ import css from "./AuthNav.module.css";
 const AuthNav = () => {
   const [modalType, setModalType] = useState(null); // 'login' or 'signup'
   const { error: authError, handleLogin, handleSignUp } = useAuth();
+
+  useEffect(() => {
+    modalType
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "");
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [modalType]);
 
   return (
     <>
@@ -21,7 +30,7 @@ const AuthNav = () => {
           Log In
         </button>
         <button
-          className={css.buttonHed}
+          className={`${css.buttonHed} ${css.buttonHedColor}`}
           onClick={() => setModalType("signup")}
         >
           Registration

@@ -89,7 +89,7 @@ function AuthModal({ type, onSubmit, onClose }) {
             <PasswordInput
               className={css.input}
               {...register("password")}
-              placeholder="Enter your password"
+              placeholder="Password"
             />
             {errors.password && (
               <p className="error">{errors.password.message}</p>

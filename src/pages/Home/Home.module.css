@@ -71,14 +71,13 @@
 
 .stats {
   display: grid;
-  /* grid-template-columns: repeat(4, 1fr); */
   grid-template-columns: repeat(4, 210px);
   gap: 94px;
   padding-left: 122px;
   padding-right: 122px;
   background: white;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border: 1.5px dashed #9fb7ce;
+  border: 1.5px dashed #f4c550;
   border-radius: 30px;
   width: 1068px;
   height: 116px;

@@ -7,4 +7,11 @@
     background-color: #fff;
     color: #121417;
   }
+  input {
+    background-color: #fff;
+  }
+  button {
+    /* appearance: none; */
+    color: #121417;
+  }
 }

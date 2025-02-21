@@ -20,6 +20,16 @@ const TeacherItem = ({ teacher }) => {
   };
 
   useEffect(() => {
+    isModalOpen
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "");
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isModalOpen]);
+
+  useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUserAuth(currentUser);
       if (!currentUser) {

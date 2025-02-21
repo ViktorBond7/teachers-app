@@ -3,7 +3,7 @@
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  background-color: beige;
+  background-color: #eeeeee;
   color-scheme: light dark;
   color: #121417;
 
@@ -12,21 +12,17 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* --main: #323f47; */
-  /* --main-text: #2f2f2f; */
   --accent: #f4c550;
   --accent-hover: #ffdc86;
   --background: #f8f8f8;
   --background-button: #fbe9ba;
-  /* --main-white: #fff; */
+  --main-white: #fff;
   --font-roboto: "Roboto", sans-serif;
   --italic: italic;
 }
 
 body {
   display: flex;
-  /* align-items: center; */
-
   overflow-x: hidden;
 }
 h1,
