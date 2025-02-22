@@ -31,16 +31,18 @@ const Teachers = () => {
         setPrice={setPrice}
       />
 
-      {data && <TeachersList teacher={filteredTeachers} />}
+      <div className={css.container}>
+        {data && <TeachersList teacher={filteredTeachers} />}
 
-      {loading && <Loader />}
-      {hasMore && !loading && data && (
-        <button className={css.buttonMore} onClick={loadMoreData}>
-          Load More
-        </button>
-      )}
+        {loading && <Loader />}
+        {hasMore && !loading && data && (
+          <button className={css.buttonMore} onClick={loadMoreData}>
+            Load More
+          </button>
+        )}
 
-      {dataError && <p>{dataError}</p>}
+        {dataError && <p>{dataError}</p>}
+      </div>
     </div>
   );
 };

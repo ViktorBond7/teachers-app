@@ -1,6 +1,6 @@
 .list {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1184px;
   gap: 10px;
   padding-left: 122px;
   padding-right: 122px;

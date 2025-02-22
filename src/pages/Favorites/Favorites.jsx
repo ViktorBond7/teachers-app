@@ -40,7 +40,7 @@ const Favorites = () => {
   }, [user]);
 
   return (
-    <>
+    <div className={css.container}>
       {userAuth && favorites.length !== 0 ? (
         <TeachersList teacher={favorites} updateFavorites={favorites} />
       ) : (
@@ -48,7 +48,7 @@ const Favorites = () => {
           Unfortunately does not yet have selected teachers
         </p>
       )}
-    </>
+    </div>
   );
 };
 

@@ -1,14 +1,24 @@
 .header {
-  display: flex;
-  width: 1184px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
   height: 84px;
-  padding-left: 128px;
-  padding-right: 128px;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  /* position: fixed;
+  background-color: #eeeeee;
   z-index: 100000;
-  background-color: #eeeeee; */
+}
+
+.header .container {
+  max-width: 1184px;
+  width: 100%;
+  padding-left: 128px;
+  padding-right: 128px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
 }
 .logo {
   display: flex;

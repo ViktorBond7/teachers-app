@@ -1,17 +1,26 @@
 .containerFilter {
   display: flex;
-  padding-left: 122px;
-  padding-right: 122px;
+  gap: 20px;
+  z-index: 100;
+  position: fixed;
+  background-color: #eeeeee;
+  width: 100%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 100%;
+  width: 100vw;
+}
+.container {
+  display: flex;
+  width: 1184px;
   gap: 20px;
   padding-bottom: 16px;
   padding-bottom: 32px;
-  /* z-index: 100;
-  position: fixed;
-  background-color: #eeeeee;
-  width: 100%; */
-  /* padding-top: 84px; */
+  z-index: 100;
+  margin: 0 auto;
+  padding-top: 84px;
 }
-
 .option {
   display: flex;
   flex-direction: column;

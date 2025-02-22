@@ -1,3 +1,7 @@
+.container {
+  display: flex;
+  margin-top: 84px;
+}
 .page {
   display: flex;
   justify-content: center;

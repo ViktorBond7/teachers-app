@@ -74,7 +74,7 @@ const TeacherItem = ({ teacher }) => {
 
   return (
     <>
-      <ToastContainer position="top-right" autoClose={3000} />
+      <ToastContainer position="bottom-center" autoClose={3000} />
       <li className={css.containerRoot}>
         <div className={css.containerImg}>
           <img

@@ -11,21 +11,23 @@ const AppBar = () => {
 
   return (
     <header className={css.header}>
-      <Link to="/" className={css.logo}>
-        <IconSvg
-          iconName="icon-ukraine"
-          width="28"
-          height="28"
-          className={css.icon}
-        />
-        <p>LearnLingo</p>
-      </Link>
+      <div className={css.container}>
+        <Link to="/" className={css.logo}>
+          <IconSvg
+            iconName="icon-ukraine"
+            width="28"
+            height="28"
+            className={css.icon}
+          />
+          <p>LearnLingo</p>
+        </Link>
 
-      <div className={css.containerNav}>
-        <div className={css.navigation}>
-          <Navigation />
+        <div className={css.containerNav}>
+          <div className={css.navigation}>
+            <Navigation />
+          </div>
+          <div>{user ? <UserMenu /> : <AuthNav />}</div>
         </div>
-        <div>{user ? <UserMenu /> : <AuthNav />}</div>
       </div>
     </header>
   );

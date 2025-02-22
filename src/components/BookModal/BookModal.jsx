@@ -12,7 +12,10 @@ const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
   phone: yup
     .string()
-    .matches(/^\+?[\d\s\-()]{10,20}$/, "Phone must be a number")
+    .matches(
+      /^(\+?\d{7,20}|\+?[\d\s\-()]{10,20})$/,
+      "Phone must be a number min 7 digits"
+    )
     .required("Phone number is required"),
 });
 const BookModal = ({ teacher, onClose }) => {
